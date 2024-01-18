@@ -1,8 +1,6 @@
-#Open browser
 import time
 
 import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
@@ -10,11 +8,8 @@ class TestPositiveScenarios:
 
     @pytest.mark.login
     @pytest.mark.positive
-    def test_positive_login(self):
-        driver = webdriver.Chrome()
-        time.sleep(3)
-
-        # Got to webpage
+    def test_positive_login(self, driver):
+        # Go to webpage
         driver.get("https://practicetestautomation.com/practice-test-login/")
         time.sleep(2)
 
@@ -43,15 +38,3 @@ class TestPositiveScenarios:
         # Verify button Log out is displayed on the new page
         log_out_button_locator = driver.find_element(By.LINK_TEXT, "Log out")
         assert log_out_button_locator.is_displayed()
-
-
-"""
-Open page DONE
-Type username student into Username field
-Type password Password123 into Password field
-Push Submit button
-Verify new page URL contains practicetestautomation.com/logged-in-successfully/
-Verify new page contains expected text ('Congratulations' or 'successfully logged in')
-Verify button Log out is displayed on the new page
-
-"""
